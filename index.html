@@ -90,8 +90,10 @@
   display: grid;
   grid-template-columns: 1fr auto auto;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
+  padding: 10px 0;
 }
+
 
 @media (max-width: 480px) {
   .item {
@@ -110,14 +112,30 @@
       font-weight: 500;
     }
 
-    input[type="number"] {
-  width: 60px;
-  padding: 6px;
-  text-align: center;
+    .qty-control {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.qty-btn {
+  width: 28px;
+  height: 28px;
   border-radius: 6px;
-  border: 1px solid #444;
+  border: none;
+  background: linear-gradient(135deg, #c9a24d, #f5d27a);
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.qty-value {
+  width: 36px;
+  text-align: center;
   background: #111;
   color: #fff;
+  border-radius: 6px;
+  padding: 4px 0;
 }
       padding: 6px;
       border-radius: 6px;
@@ -207,5 +225,44 @@
   <button><i class="fa-solid fa-print"></i> Print</button>
 </div>
 
+<div class="total-bar">
+  <span>Total: ₹<span id="totalAmount">0</span></span>
+  <button id="whatsappBtn">Send Order on WhatsApp</button>
+</div>
+
+<script>
+const items = document.querySelectorAll('.item');
+const totalEl = document.getElementById('totalAmount');
+
+function updateTotal() {
+  let total = 0;
+  items.forEach(item => {
+    const price = parseInt(item.dataset.price);
+    const qty = parseInt(item.querySelector('.qty-value').innerText);
+    total += price * qty;
+  });
+  totalEl.innerText = total;
+}
+
+function changeQty(btn, delta) {
+  const valEl = btn.parentElement.querySelector('.qty-value');
+  let qty = parseInt(valEl.innerText);
+  qty = Math.max(0, qty + delta);
+  valEl.innerText = qty;
+  updateTotal();
+}
+
+document.getElementById('whatsappBtn').onclick = () => {
+  let msg = 'Cinematic Celebration – Food Order%0A%0A';
+  items.forEach(item => {
+    const name = item.querySelector('.item-name').innerText;
+    const price = item.dataset.price;
+    const qty = item.querySelector('.qty-value').innerText;
+    if (qty > 0) msg += `${name} x ${qty} = ₹${price * qty}%0A`;
+  });
+  msg += `%0A_Total: ₹${totalEl.innerText}`;
+  window.open(`https://wa.me/917349280445?text=${msg}`, '_blank');
+};
+</script>
 </body>
 </html>

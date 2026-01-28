@@ -219,12 +219,6 @@
 
 </div>
 
-<div class="total-box">
-  <h2>Total: ₹0</h2>
-  <button><i class="fa-brands fa-whatsapp"></i> Order on WhatsApp</button>
-  <button><i class="fa-solid fa-print"></i> Print</button>
-</div>
-
 <div class="total-bar">
   <span>Total: ₹<span id="totalAmount">0</span></span>
   <button id="whatsappBtn">Send Order on WhatsApp</button>
@@ -241,6 +235,15 @@ function updateTotal() {
     const qty = parseInt(item.querySelector('.qty-value').innerText);
     total += price * qty;
   });
+  totalEl.textContent = total;
+}
+
+// auto bind buttons
+items.forEach(item => {
+  item.querySelectorAll('.qty-btn').forEach(btn => {
+    btn.addEventListener('click', () => updateTotal());
+  });
+}););
   totalEl.innerText = total;
 }
 
@@ -261,7 +264,8 @@ document.getElementById('whatsappBtn').onclick = () => {
     if (qty > 0) msg += `${name} x ${qty} = ₹${price * qty}%0A`;
   });
   msg += `%0A_Total: ₹${totalEl.innerText}`;
-  window.open(`https://wa.me/917349280445?text=${msg}`, '_blank');
+  // prevent duplicate send
+window.open(`https://wa.me/917349280445?text=${msg}`, '_blank');
 };
 </script>
 </body>

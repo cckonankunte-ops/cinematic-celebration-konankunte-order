@@ -3,209 +3,257 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cinematic Celebration | Food Order</title>
+  <title>Cinematic Celebration – Food Order</title>
   <style>
-    :root {
-      --gold: #d4af37;
-      --black: #000000;
-      --dark: #111111;
-    }
-    * { box-sizing: border-box; }
     body {
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
-      background: var(--black);
-      color: #ffffff;
+      background: #000;
+      color: #fff;
+    }
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 16px;
     }
     header {
       text-align: center;
-      padding: 16px;
-      border-bottom: 1px solid #222;
+      margin-bottom: 20px;
     }
     header img {
       max-width: 220px;
-      height: auto;
+      margin-bottom: 8px;
     }
     h2 {
-      margin: 0;
-      padding: 14px;
-      background: var(--dark);
-      color: var(--gold);
+      color: #d4af37;
+      border-bottom: 1px solid rgba(212,175,55,0.4);
+      padding-bottom: 6px;
       cursor: pointer;
-      font-size: 18px;
     }
     .section {
-      border-bottom: 1px solid #222;
+      margin-bottom: 20px;
     }
     .items {
       display: none;
-      padding: 10px 14px;
+      margin-top: 10px;
     }
     .item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 6px 0;
+      display: grid;
+      grid-template-columns: 1fr 80px 80px;
       gap: 8px;
+      align-items: center;
+      margin-bottom: 8px;
     }
-    .item span {
-      flex: 1;
-      font-size: 14px;
-    }
-    .price {
-      color: var(--gold);
-      margin-right: 8px;
-      white-space: nowrap;
-    }
-    input[type=number] {
-      width: 60px;
-      padding: 4px;
+    .item input {
+      width: 100%;
+      padding: 6px;
       border-radius: 4px;
       border: none;
     }
-    .total {
-      position: sticky;
-      bottom: 0;
-      background: #111;
-      padding: 14px;
-      text-align: center;
-      font-size: 18px;
-      border-top: 1px solid #222;
+    .price {
+      text-align: right;
     }
-    @media (min-width: 768px) {
-      body { max-width: 700px; margin: auto; }
+    .total-box {
+      border-top: 2px solid #d4af37;
+      margin-top: 20px;
+      padding-top: 12px;
+      font-size: 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .customer {
+      margin-bottom: 20px;
+    }
+    .customer input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 6px;
+      border: none;
+    }
+    .actions {
+      margin-top: 20px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    button {
+      flex: 1;
+      padding: 12px;
+      font-size: 16px;
+      background: #d4af37;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      color: #000;
+      font-weight: bold;
+    }
+    @media print {
+      button { display: none; }
+      body { background: #fff; color: #000; }
     }
   </style>
 </head>
 <body>
+  <div class="container">
+    <header>
+      <img src="Logo_Brand_Name.png" alt="Cinematic Celebration Logo" />
+      <p>Food Order Menu</p>
+    </header>
 
-<header>
-  <img src="Logo_Brand_Name.png" alt="Cinematic Celebration" />
-</header>
+    <div class="customer">
+      <input type="text" id="custName" placeholder="Customer Name" />
+      <input type="tel" id="custPhone" placeholder="Mobile Number" />
+    </div>
 
-<div id="menu"></div>
+    <div id="menu"></div>
 
-<div class="total">Total Amount: ₹<span id="total">0</span></div>
+    <div class="total-box">
+      <strong>Total Amount</strong>
+      <strong>₹ <span id="total">0</span></strong>
+    </div>
 
-<script>
-const menuData = {
-  "Burger": [
-    ["Veg Cheese Burger",135],
-    ["Chicken Crispy Burger",150]
-  ],
-  "Sandwich": [
-    ["Veg Cheese Sandwich",90],
-    ["Paneer Cheese Sandwich",100],
-    ["Mushroom Cheese Sandwich",100],
-    ["Corn Cheese Sandwich",100],
-    ["Egg Cheese Sandwich",100],
-    ["Chicken Cheese Sandwich",110]
-  ],
-  "Pizza": [
-    ["Cheese Margherita Pizza",130],
-    ["Veggie Corn Pizza",140],
-    ["Veggie Mushroom Pizza",150],
-    ["Veggie Paneer Pizza",150],
-    ["Corn Paneer Pizza",160],
-    ["Pepe Paneer Pizza",160],
-    ["Chicken Tandoor Pizza",160]
-  ],
-  "Garlic Bread": [
-    ["Cheese Garlic Bread",100],
-    ["Chilly Cheese Garlic Bread",110],
-    ["Corn Cheese Garlic Bread",110]
-  ],
-  "French Fries": [
-    ["Fries Regular",95],
-    ["Fries Peri Peri",100]
-  ],
-  "Veg Starter": [
-    ["Gobi Manchurian",120],
-    ["Baby Corn Manchurian",140],
-    ["Mushroom Chilly",140],
-    ["Mushroom Pepper Dry",140],
-    ["Mushroom 65",140],
-    ["Baby Corn 65",140],
-    ["Paneer 65",150]
-  ],
-  "Non-Veg Starter": [
-    ["Chicken Popcorn",130],
-    ["Chicken Cheese Popcorn",140],
-    ["Chilly Chicken",165],
-    ["Chicken 65",165],
-    ["Chicken Crispy Lollipop",130],
-    ["Chicken Lollipop Semi Dry (5 Pc)",170],
-    ["Lemon Chicken",170],
-    ["Egg Chilly",130],
-    ["Egg 65",130]
-  ],
-  "Fried Rice": [
-    ["Veg Fried Rice",120],
-    ["Paneer Fried Rice",140],
-    ["Mushroom Fried Rice",140],
-    ["Egg Fried Rice",140],
-    ["Chicken Egg Fried Rice",160]
-  ],
-  "Noodles": [
-    ["Veg Noodles",140],
-    ["Egg Noodles",150],
-    ["Chicken Noodles",160]
-  ],
-  "Fresh Juice": [
-    ["Watermelon Juice",70],
-    ["Mosambi Juice",70],
-    ["Pineapple Juice",70],
-    ["Apple Shake",90],
-    ["Chikku Shake",80],
-    ["Mango Shake",85]
-  ],
-  "Milk Shake": [
-    ["Vanilla Milk Shake",80],
-    ["Orio Milk Shake",90],
-    ["Chocolate Milk Shake",90],
-    ["Strawberry Milk Shake",90],
-    ["Black Current Milk Shake",90],
-    ["Dry Fruit Milk Shake",100]
-  ]
-};
+    <div class="actions">
+      <button onclick="sendWhatsApp()">Place Order on WhatsApp</button>
+      <button onclick="window.print()">Print Bill</button>
+    </div>
+  </div>
 
-const menuDiv = document.getElementById('menu');
-let totalEl = document.getElementById('total');
+  <script>
+    const menuData = {
+      "Burger": [
+		["Veg Cheese Burger",135],
+		["Chicken Crispy Burger",150]
+	  ],
+	  "Sandwich": [
+		["Veg Cheese Sandwich",90],
+		["Paneer Cheese Sandwich",100],
+		["Mushroom Cheese Sandwich",100],
+		["Corn Cheese Sandwich",100],
+		["Egg Cheese Sandwich",100],
+		["Chicken Cheese Sandwich",110]
+	  ],
+	  "Pizza": [
+		["Cheese Margherita Pizza",130],
+		["Veggie Corn Pizza",140],
+		["Veggie Mushroom Pizza",150],
+		["Veggie Paneer Pizza",150],
+		["Corn Paneer Pizza",160],
+		["Pepe Paneer Pizza",160],
+		["Chicken Tandoor Pizza",160]
+	  ],
+	  "Garlic Bread": [
+		["Cheese Garlic Bread",100],
+		["Chilly Cheese Garlic Bread",110],
+		["Corn Cheese Garlic Bread",110]
+	  ],
+	  "French Fries": [
+		["Fries Regular",95],
+		["Fries Peri Peri",100]
+	  ],
+	  "Veg Starter": [
+		["Gobi Manchurian",120],
+		["Baby Corn Manchurian",140],
+		["Mushroom Chilly",140],
+		["Mushroom Pepper Dry",140],
+		["Mushroom 65",140],
+		["Baby Corn 65",140],
+		["Paneer 65",150]
+	  ],
+	  "Non-Veg Starter": [
+		["Chicken Popcorn",130],
+		["Chicken Cheese Popcorn",140],
+		["Chilly Chicken",165],
+		["Chicken 65",165],
+		["Chicken Crispy Lollipop",130],
+		["Chicken Lollipop Semi Dry (5 Pc)",170],
+		["Lemon Chicken",170],
+		["Egg Chilly",130],
+		["Egg 65",130]
+	  ],
+	  "Fried Rice": [
+		["Veg Fried Rice",120],
+		["Paneer Fried Rice",140],
+		["Mushroom Fried Rice",140],
+		["Egg Fried Rice",140],
+		["Chicken Egg Fried Rice",160]
+	  ],
+	  "Noodles": [
+		["Veg Noodles",140],
+		["Egg Noodles",150],
+		["Chicken Noodles",160]
+	  ],
+	  "Fresh Juice": [
+		["Watermelon Juice",70],
+		["Mosambi Juice",70],
+		["Pineapple Juice",70],
+		["Apple Shake",90],
+		["Chikku Shake",80],
+		["Mango Shake",85]
+	  ],
+	  "Milk Shake": [
+		["Vanilla Milk Shake",80],
+		["Orio Milk Shake",90],
+		["Chocolate Milk Shake",90],
+		["Strawberry Milk Shake",90],
+		["Black Current Milk Shake",90],
+		["Dry Fruit Milk Shake",100]
+	  ]
+    };
 
-function calculateTotal() {
-  let total = 0;
-  document.querySelectorAll('input[data-price]').forEach(input => {
-    total += (input.value || 0) * input.dataset.price;
-  });
-  totalEl.textContent = total;
-}
+    const menuDiv = document.getElementById('menu');
 
-Object.entries(menuData).forEach(([category, items]) => {
-  const section = document.createElement('div');
-  section.className = 'section';
+    for (const category in menuData) {
+      const section = document.createElement('div');
+      section.className = 'section';
 
-  const h2 = document.createElement('h2');
-  h2.textContent = category;
-  h2.onclick = () => {
-    itemsDiv.style.display = itemsDiv.style.display === 'block' ? 'none' : 'block';
-  };
+      const title = document.createElement('h2');
+      title.innerText = category;
+      title.onclick = () => items.style.display = items.style.display === 'none' ? 'block' : 'none';
 
-  const itemsDiv = document.createElement('div');
-  itemsDiv.className = 'items';
+      const items = document.createElement('div');
+      items.className = 'items';
 
-  items.forEach(([name, price]) => {
-    const row = document.createElement('div');
-    row.className = 'item';
-    row.innerHTML = `<span>${name}</span><span class="price">₹${price}</span><input type="number" min="0" value="0" data-price="${price}" />`;
-    row.querySelector('input').addEventListener('input', calculateTotal);
-    itemsDiv.appendChild(row);
-  });
+      for (const item in menuData[category]) {
+        const price = menuData[category][item];
+        const row = document.createElement('div');
+        row.className = 'item';
+        row.innerHTML = `<div>${item}</div><div class='price'>₹${price}</div><input type='number' min='0' value='0' data-price='${price}' onchange='calcTotal()'>`;
+        items.appendChild(row);
+      }
 
-  section.appendChild(h2);
-  section.appendChild(itemsDiv);
-  menuDiv.appendChild(section);
-});
-</script>
+      section.appendChild(title);
+      section.appendChild(items);
+      menuDiv.appendChild(section);
+    }
 
+    function calcTotal() {
+      let total = 0;
+      document.querySelectorAll('input[data-price]').forEach(i => {
+        total += (Number(i.value) || 0) * Number(i.dataset.price);
+      });
+      document.getElementById('total').innerText = total;
+    }
+
+    function sendWhatsApp() {
+      let msg = `Order from Cinematic Celebration%0A`;
+      const name = document.getElementById('custName').value;
+      const phone = document.getElementById('custPhone').value;
+      if (name) msg += `Name: ${name}%0A`;
+      if (phone) msg += `Phone: ${phone}%0A%0A`;
+
+      document.querySelectorAll('input[data-price]').forEach(i => {
+        if (i.value > 0) {
+          const item = i.parentElement.children[0].innerText;
+          const price = i.dataset.price;
+          msg += `${item} x${i.value} = ₹${i.value * price}%0A`;
+        }
+      });
+
+      msg += `%0ATotal: ₹${document.getElementById('total').innerText}`;
+      window.open(`https://wa.me/917349280445?text=${msg}`, '_blank');
+    }
+  </script>
 </body>
 </html>

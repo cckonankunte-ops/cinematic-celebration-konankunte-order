@@ -1,10 +1,214 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Cinematic Celebration - Food Order</title>
+<meta charset="UTF-8">
+<title>Cinematic Celebration – Food Order</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0f0f0f;
+    color: #ffffff;
+  }
+
+  .container {
+    max-width: 600px;
+    margin: auto;
+    padding: 16px;
+  }
+
+  h1 {
+    text-align: center;
+    color: #f5c16c;
+    margin-bottom: 5px;
+  }
+
+  .subtitle {
+    text-align: center;
+    font-size: 14px;
+    opacity: 0.8;
+    margin-bottom: 20px;
+  }
+
+  .section {
+    margin-bottom: 25px;
+  }
+
+  .section h2 {
+    border-bottom: 1px solid rgba(245,193,108,0.6);
+    padding-bottom: 6px;
+    color: #f5c16c;
+    font-size: 18px;
+  }
+
+  .item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+
+  .item span {
+    flex: 1;
+  }
+
+  .item input {
+    width: 60px;
+    padding: 6px;
+    font-size: 15px;
+    text-align: center;
+    border-radius: 6px;
+    border: none;
+  }
+
+  .details input, .details select, .details textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 6px;
+    border: none;
+    font-size: 15px;
+  }
+
+  button {
+    width: 100%;
+    padding: 14px;
+    background: #f5c16c;
+    border: none;
+    border-radius: 8px;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #000;
+  }
+
+  button:hover {
+    background: #ffd27f;
+  }
+
+  footer {
+    text-align: center;
+    font-size: 12px;
+    opacity: 0.6;
+    margin-top: 20px;
+  }
+</style>
 </head>
+
 <body>
+<div class="container">
+
   <h1>Cinematic Celebration</h1>
-  <p>Food order page coming soon.</p>
+  <div class="subtitle">Food Pre-Order | Enter 0 if item not required</div>
+
+  <!-- VEG STARTERS -->
+  <div class="section">
+    <h2>Veg Starters</h2>
+
+    <div class="item">
+      <span>Gobi Manchurian ₹80</span>
+      <input type="number" min="0" id="gobi">
+    </div>
+
+    <div class="item">
+      <span>Paneer 65 ₹120</span>
+      <input type="number" min="0" id="paneer65">
+    </div>
+  </div>
+
+  <!-- NON VEG -->
+  <div class="section">
+    <h2>Non-Veg Starters</h2>
+
+    <div class="item">
+      <span>Chicken 65 ₹125</span>
+      <input type="number" min="0" id="chicken65">
+    </div>
+
+    <div class="item">
+      <span>Chicken Lollipop ₹130</span>
+      <input type="number" min="0" id="lollipop">
+    </div>
+  </div>
+
+  <!-- DRINKS -->
+  <div class="section">
+    <h2>Juices & Milkshakes</h2>
+
+    <div class="item">
+      <span>Watermelon Juice ₹50</span>
+      <input type="number" min="0" id="watermelon">
+    </div>
+
+    <div class="item">
+      <span>Cold Coffee ₹70</span>
+      <input type="number" min="0" id="coffee">
+    </div>
+  </div>
+
+  <!-- CUSTOMER DETAILS -->
+  <div class="section details">
+    <h2>Customer Details</h2>
+
+    <input type="text" id="name" placeholder="Customer Name">
+    <input type="tel" id="mobile" placeholder="Mobile Number">
+    <input type="date" id="date">
+
+    <select id="branch">
+      <option value="">Select Branch</option>
+      <option>Bannerghatta Road</option>
+      <option>Konankunte</option>
+      <option>Electronic City</option>
+    </select>
+
+    <textarea id="notes" placeholder="Special instructions (optional)"></textarea>
+  </div>
+
+  <button onclick="sendWhatsApp()">Send Order on WhatsApp</button>
+
+  <footer>
+    © Cinematic Celebration
+  </footer>
+
+</div>
+
+<script>
+function sendWhatsApp() {
+  let message = "CINEMATIC CELEBRATION – FOOD ORDER%0A%0A";
+
+  function addItem(name, id) {
+    let qty = document.getElementById(id).value;
+    if (qty && qty > 0) {
+      message += name + " – " + qty + "%0A";
+    }
+  }
+
+  addItem("Gobi Manchurian", "gobi");
+  addItem("Paneer 65", "paneer65");
+  addItem("Chicken 65", "chicken65");
+  addItem("Chicken Lollipop", "lollipop");
+  addItem("Watermelon Juice", "watermelon");
+  addItem("Cold Coffee", "coffee");
+
+  message += "%0A";
+
+  message += "Name: " + document.getElementById("name").value + "%0A";
+  message += "Mobile: " + document.getElementById("mobile").value + "%0A";
+  message += "Date: " + document.getElementById("date").value + "%0A";
+  message += "Branch: " + document.getElementById("branch").value + "%0A";
+
+  let notes = document.getElementById("notes").value;
+  if (notes) {
+    message += "%0AInstructions: " + notes;
+  }
+
+  let phoneNumber = "91XXXXXXXXXX"; // 🔴 Replace with your WhatsApp number
+  window.open("https://wa.me/" + phoneNumber + "?text=" + message, "_blank");
+}
+</script>
+
 </body>
 </html>

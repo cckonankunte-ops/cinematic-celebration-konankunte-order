@@ -6,207 +6,220 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-  body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #0f0f0f;
-    color: #ffffff;
-  }
-
-  .container {
-    max-width: 600px;
-    margin: auto;
-    padding: 16px;
-  }
-
-  h1 {
-    text-align: center;
-    color: #f5c16c;
-    margin-bottom: 5px;
-  }
-
-  .subtitle {
-    text-align: center;
-    font-size: 14px;
-    opacity: 0.8;
-    margin-bottom: 20px;
-  }
-
-  .section {
-    margin-bottom: 25px;
-  }
-
-  .section h2 {
-    border-bottom: 1px solid rgba(245,193,108,0.6);
-    padding-bottom: 6px;
-    color: #f5c16c;
-    font-size: 18px;
-  }
-
-  .item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 10px 0;
-    font-size: 15px;
-  }
-
-  .item span {
-    flex: 1;
-  }
-
-  .item input {
-    width: 60px;
-    padding: 6px;
-    font-size: 15px;
-    text-align: center;
-    border-radius: 6px;
-    border: none;
-  }
-
-  .details input, .details select, .details textarea {
-    width: 100%;
-    padding: 10px;
-    margin: 8px 0;
-    border-radius: 6px;
-    border: none;
-    font-size: 15px;
-  }
-
-  button {
-    width: 100%;
-    padding: 14px;
-    background: #f5c16c;
-    border: none;
-    border-radius: 8px;
-    font-size: 17px;
-    font-weight: bold;
-    cursor: pointer;
-    color: #000;
-  }
-
-  button:hover {
-    background: #ffd27f;
-  }
-
-  footer {
-    text-align: center;
-    font-size: 12px;
-    opacity: 0.6;
-    margin-top: 20px;
-  }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0f0f0f;
+  color: #fff;
+}
+.container {
+  max-width: 700px;
+  margin: auto;
+  padding: 16px;
+}
+h1 {
+  text-align: center;
+  color: #f5c16c;
+}
+.subtitle {
+  text-align: center;
+  font-size: 14px;
+  opacity: 0.8;
+  margin-bottom: 20px;
+}
+.section {
+  margin-bottom: 28px;
+}
+.section h2 {
+  color: #f5c16c;
+  border-bottom: 1px solid rgba(245,193,108,0.6);
+  padding-bottom: 6px;
+}
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0;
+}
+.item span {
+  flex: 1;
+  font-size: 15px;
+}
+.item input {
+  width: 60px;
+  padding: 6px;
+  text-align: center;
+  border-radius: 6px;
+  border: none;
+}
+.details input, .details select, .details textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 6px;
+  border: none;
+}
+button {
+  width: 100%;
+  padding: 14px;
+  background: #f5c16c;
+  border: none;
+  border-radius: 8px;
+  font-size: 17px;
+  font-weight: bold;
+}
+footer {
+  text-align: center;
+  font-size: 12px;
+  opacity: 0.6;
+  margin-top: 20px;
+}
 </style>
 </head>
 
 <body>
 <div class="container">
 
-  <h1>Cinematic Celebration</h1>
-  <div class="subtitle">Food Pre-Order | Enter 0 if item not required</div>
+<h1>Cinematic Celebration</h1>
+<div class="subtitle">Food Pre-Order | Enter 0 if item not required</div>
 
-  <!-- VEG STARTERS -->
-  <div class="section">
-    <h2>Veg Starters</h2>
+<!-- BURGERS -->
+<div class="section">
+<h2>Burgers</h2>
+<div class="item"><span>Veg Cheese Burger ₹135</span><input type="number" min="0" id="veg_burger"></div>
+<div class="item"><span>Chicken Crispy Burger ₹150</span><input type="number" min="0" id="chicken_burger"></div>
+</div>
 
-    <div class="item">
-      <span>Gobi Manchurian ₹80</span>
-      <input type="number" min="0" id="gobi">
-    </div>
+<!-- SANDWICH -->
+<div class="section">
+<h2>Sandwich</h2>
+<div class="item"><span>Veg Cheese Sandwich ₹90</span><input type="number" min="0" id="veg_sandwich"></div>
+<div class="item"><span>Paneer Cheese Sandwich ₹100</span><input type="number" min="0" id="paneer_sandwich"></div>
+<div class="item"><span>Mushroom Cheese Sandwich ₹100</span><input type="number" min="0" id="mushroom_sandwich"></div>
+<div class="item"><span>Corn Cheese Sandwich ₹100</span><input type="number" min="0" id="corn_sandwich"></div>
+<div class="item"><span>Egg Cheese Sandwich ₹100</span><input type="number" min="0" id="egg_sandwich"></div>
+<div class="item"><span>Chicken Cheese Sandwich ₹110</span><input type="number" min="0" id="chicken_sandwich"></div>
+</div>
 
-    <div class="item">
-      <span>Paneer 65 ₹120</span>
-      <input type="number" min="0" id="paneer65">
-    </div>
-  </div>
+<!-- PIZZA -->
+<div class="section">
+<h2>Pizza</h2>
+<div class="item"><span>Cheese Margherita ₹130</span><input type="number" min="0" id="pizza1"></div>
+<div class="item"><span>Veggie Corn ₹140</span><input type="number" min="0" id="pizza2"></div>
+<div class="item"><span>Veggie Mushroom ₹150</span><input type="number" min="0" id="pizza3"></div>
+<div class="item"><span>Veggie Paneer ₹150</span><input type="number" min="0" id="pizza4"></div>
+<div class="item"><span>Corn Paneer ₹160</span><input type="number" min="0" id="pizza5"></div>
+<div class="item"><span>Pepe Paneer ₹160</span><input type="number" min="0" id="pizza6"></div>
+<div class="item"><span>Chicken Tandoor ₹160</span><input type="number" min="0" id="pizza7"></div>
+</div>
 
-  <!-- NON VEG -->
-  <div class="section">
-    <h2>Non-Veg Starters</h2>
+<!-- GARLIC BREAD -->
+<div class="section">
+<h2>Garlic Bread</h2>
+<div class="item"><span>Cheese Garlic Bread ₹100</span><input type="number" min="0" id="gb1"></div>
+<div class="item"><span>Chilly Cheese Garlic Bread ₹110</span><input type="number" min="0" id="gb2"></div>
+<div class="item"><span>Corn Cheese Garlic Bread ₹110</span><input type="number" min="0" id="gb3"></div>
+</div>
 
-    <div class="item">
-      <span>Chicken 65 ₹125</span>
-      <input type="number" min="0" id="chicken65">
-    </div>
+<!-- VEG STARTER -->
+<div class="section">
+<h2>Veg Starters</h2>
+<div class="item"><span>Gobi Manchurian ₹120</span><input type="number" min="0" id="veg1"></div>
+<div class="item"><span>Baby Corn Manchurian ₹140</span><input type="number" min="0" id="veg2"></div>
+<div class="item"><span>Mushroom Chilly ₹140</span><input type="number" min="0" id="veg3"></div>
+<div class="item"><span>Mushroom Pepper Dry ₹140</span><input type="number" min="0" id="veg4"></div>
+<div class="item"><span>Mushroom 65 ₹140</span><input type="number" min="0" id="veg5"></div>
+<div class="item"><span>Baby Corn 65 ₹140</span><input type="number" min="0" id="veg6"></div>
+<div class="item"><span>Paneer 65 ₹150</span><input type="number" min="0" id="veg7"></div>
+</div>
 
-    <div class="item">
-      <span>Chicken Lollipop ₹130</span>
-      <input type="number" min="0" id="lollipop">
-    </div>
-  </div>
+<!-- FRENCH FRIES -->
+<div class="section">
+<h2>French Fries</h2>
+<div class="item"><span>Fries Regular ₹95</span><input type="number" min="0" id="fries1"></div>
+<div class="item"><span>Fries Peri Peri ₹100</span><input type="number" min="0" id="fries2"></div>
+</div>
 
-  <!-- DRINKS -->
-  <div class="section">
-    <h2>Juices & Milkshakes</h2>
+<!-- NON VEG -->
+<div class="section">
+<h2>Non-Veg Starters</h2>
+<div class="item"><span>Chicken Popcorn ₹130</span><input type="number" min="0" id="nv1"></div>
+<div class="item"><span>Chicken Cheese Popcorn ₹140</span><input type="number" min="0" id="nv2"></div>
+<div class="item"><span>Chilly Chicken ₹165</span><input type="number" min="0" id="nv3"></div>
+<div class="item"><span>Chicken 65 ₹165</span><input type="number" min="0" id="nv4"></div>
+<div class="item"><span>Chicken Crispy Lollipop ₹130</span><input type="number" min="0" id="nv5"></div>
+<div class="item"><span>Chicken Lollipop Semi Dry ₹170</span><input type="number" min="0" id="nv6"></div>
+<div class="item"><span>Lemon Chicken ₹170</span><input type="number" min="0" id="nv7"></div>
+<div class="item"><span>Egg Chilly ₹130</span><input type="number" min="0" id="nv8"></div>
+<div class="item"><span>Egg 65 ₹130</span><input type="number" min="0" id="nv9"></div>
+</div>
 
-    <div class="item">
-      <span>Watermelon Juice ₹50</span>
-      <input type="number" min="0" id="watermelon">
-    </div>
+<!-- RICE & NOODLES -->
+<div class="section">
+<h2>Rice & Noodles</h2>
+<div class="item"><span>Veg Fried Rice ₹120</span><input type="number" min="0" id="rice1"></div>
+<div class="item"><span>Paneer Fried Rice ₹140</span><input type="number" min="0" id="rice2"></div>
+<div class="item"><span>Mushroom Fried Rice ₹140</span><input type="number" min="0" id="rice3"></div>
+<div class="item"><span>Egg Fried Rice ₹140</span><input type="number" min="0" id="rice4"></div>
+<div class="item"><span>Chicken Egg Fried Rice ₹160</span><input type="number" min="0" id="rice5"></div>
 
-    <div class="item">
-      <span>Cold Coffee ₹70</span>
-      <input type="number" min="0" id="coffee">
-    </div>
-  </div>
+<div class="item"><span>Veg Noodles ₹140</span><input type="number" min="0" id="nood1"></div>
+<div class="item"><span>Egg Noodles ₹150</span><input type="number" min="0" id="nood2"></div>
+<div class="item"><span>Chicken Noodles ₹160</span><input type="number" min="0" id="nood3"></div>
+</div>
 
-  <!-- CUSTOMER DETAILS -->
-  <div class="section details">
-    <h2>Customer Details</h2>
+<!-- DRINKS -->
+<div class="section">
+<h2>Juices & Milkshakes</h2>
+<div class="item"><span>Watermelon Juice ₹70</span><input type="number" min="0" id="drink1"></div>
+<div class="item"><span>Mosambi Juice ₹70</span><input type="number" min="0" id="drink2"></div>
+<div class="item"><span>Pineapple Juice ₹70</span><input type="number" min="0" id="drink3"></div>
+<div class="item"><span>Apple Shake ₹90</span><input type="number" min="0" id="drink4"></div>
+<div class="item"><span>Chikku Shake ₹80</span><input type="number" min="0" id="drink5"></div>
+<div class="item"><span>Mango Shake ₹85</span><input type="number" min="0" id="drink6"></div>
+<div class="item"><span>Vanilla Milk Shake ₹80</span><input type="number" min="0" id="drink7"></div>
+<div class="item"><span>Oreo Milk Shake ₹90</span><input type="number" min="0" id="drink8"></div>
+<div class="item"><span>Chocolate Milk Shake ₹90</span><input type="number" min="0" id="drink9"></div>
+<div class="item"><span>Strawberry Milk Shake ₹90</span><input type="number" min="0" id="drink10"></div>
+<div class="item"><span>Black Current Milk Shake ₹90</span><input type="number" min="0" id="drink11"></div>
+<div class="item"><span>Dry Fruit Milk Shake ₹100</span><input type="number" min="0" id="drink12"></div>
+</div>
 
-    <input type="text" id="name" placeholder="Customer Name">
-    <input type="tel" id="mobile" placeholder="Mobile Number">
-    <input type="date" id="date">
+<!-- CUSTOMER DETAILS -->
+<div class="section details">
+<h2>Customer Details</h2>
+<input id="name" placeholder="Customer Name">
+<input id="mobile" placeholder="Mobile Number">
+<input type="date" id="date">
+<select id="branch">
+<option value="">Select Branch</option>
+<option>Bannerghatta Road</option>
+<option>Konankunte</option>
+<option>Electronic City</option>
+</select>
+<textarea id="notes" placeholder="Special instructions (optional)"></textarea>
+</div>
 
-    <select id="branch">
-      <option value="">Select Branch</option>
-      <option>Bannerghatta Road</option>
-      <option>Konankunte</option>
-      <option>Electronic City</option>
-    </select>
+<button onclick="sendWhatsApp()">Send Order on WhatsApp</button>
 
-    <textarea id="notes" placeholder="Special instructions (optional)"></textarea>
-  </div>
-
-  <button onclick="sendWhatsApp()">Send Order on WhatsApp</button>
-
-  <footer>
-    © Cinematic Celebration
-  </footer>
-
+<footer>© Cinematic Celebration</footer>
 </div>
 
 <script>
 function sendWhatsApp() {
-  let message = "CINEMATIC CELEBRATION – FOOD ORDER%0A%0A";
-
-  function addItem(name, id) {
-    let qty = document.getElementById(id).value;
-    if (qty && qty > 0) {
-      message += name + " – " + qty + "%0A";
+  let msg = "CINEMATIC CELEBRATION – FOOD ORDER%0A%0A";
+  document.querySelectorAll(".item input").forEach(i => {
+    if (i.value > 0) {
+      msg += i.parentElement.querySelector("span").innerText + " – " + i.value + "%0A";
     }
-  }
+  });
+  msg += "%0AName: " + name.value;
+  msg += "%0AMobile: " + mobile.value;
+  msg += "%0ADate: " + date.value;
+  msg += "%0ABranch: " + branch.value;
+  if (notes.value) msg += "%0AInstructions: " + notes.value;
 
-  addItem("Gobi Manchurian", "gobi");
-  addItem("Paneer 65", "paneer65");
-  addItem("Chicken 65", "chicken65");
-  addItem("Chicken Lollipop", "lollipop");
-  addItem("Watermelon Juice", "watermelon");
-  addItem("Cold Coffee", "coffee");
-
-  message += "%0A";
-
-  message += "Name: " + document.getElementById("name").value + "%0A";
-  message += "Mobile: " + document.getElementById("mobile").value + "%0A";
-  message += "Date: " + document.getElementById("date").value + "%0A";
-  message += "Branch: " + document.getElementById("branch").value + "%0A";
-
-  let notes = document.getElementById("notes").value;
-  if (notes) {
-    message += "%0AInstructions: " + notes;
-  }
-
-  let phoneNumber = "917349280445"; // 🔴 Replace with your WhatsApp number
-  window.open("https://wa.me/" + phoneNumber + "?text=" + message, "_blank");
+  window.open("https://wa.me/91XXXXXXXXXX?text=" + msg, "_blank");
 }
 </script>
 

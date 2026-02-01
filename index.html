@@ -8,7 +8,7 @@
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
-  <!-- Font Awesome Icons -->
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
   <style>
@@ -19,9 +19,7 @@
       --text: #f5f5f5;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -36,26 +34,27 @@
 
     header {
       text-align: center;
-      padding: 24px 16px;
-      animation: fadeDown 0.8s ease;
+      padding: 24px 16px 16px;
     }
 
     header img {
-      max-width: 200px;
-      margin-bottom: 12px;
+      max-width: 220px;
+      margin-bottom: 8px;
     }
 
-    h1 {
+    header h1 {
       font-family: 'Cinzel', serif;
       color: var(--gold);
       letter-spacing: 2px;
       margin: 0;
+      font-size: 22px;
     }
 
     .container {
       max-width: 900px;
       margin: auto;
       padding: 16px;
+      padding-bottom: 140px; /* space for sticky bar */
     }
 
     details {
@@ -64,11 +63,6 @@
       margin-bottom: 16px;
       overflow: hidden;
       box-shadow: 0 10px 25px rgba(0,0,0,0.6);
-      transition: transform 0.3s ease;
-    }
-
-    details:hover {
-      transform: scale(1.01);
     }
 
     summary {
@@ -82,191 +76,188 @@
       gap: 10px;
     }
 
-    summary::-webkit-details-marker {
-      display: none;
-    }
+    summary::-webkit-details-marker { display: none; }
 
     .item {
-  display: grid;
-  grid-template-columns: 1fr auto auto;
-  align-items: center;
-  gap: 12px;
-  padding: 10px 0;
-}
-
-
-@media (max-width: 480px) {
-  .item {
-    grid-template-columns: 1fr auto auto;
-  }
-}
-
-
-    .item-name {
-      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr auto auto;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 18px;
+      border-top: 1px solid rgba(255,255,255,0.06);
     }
+
+    .item-name { font-size: 15px; }
 
     .price {
       color: var(--gold);
-      margin-right: 10px;
       font-weight: 500;
+      white-space: nowrap;
     }
 
     .qty-control {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
 
-.qty-btn {
-  width: 28px;
-  height: 28px;
-  border-radius: 6px;
-  border: none;
-  background: linear-gradient(135deg, #c9a24d, #f5d27a);
-  color: #000;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.qty-value {
-  width: 36px;
-  text-align: center;
-  background: #111;
-  color: #fff;
-  border-radius: 6px;
-  padding: 4px 0;
-}
-      padding: 6px;
+    .qty-btn {
+      width: 28px;
+      height: 28px;
       border-radius: 6px;
       border: none;
-      outline: none;
+      background: linear-gradient(135deg, #c9a24d, #f5d27a);
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 16px;
+      line-height: 1;
+    }
+
+    .qty-value {
+      width: 36px;
+      text-align: center;
+      background: #111;
+      color: #fff;
+      border-radius: 6px;
+      padding: 4px 0;
       font-size: 14px;
     }
 
+    /* Sticky total bar */
     .total-box {
-      background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
-      border-radius: 16px;
-      padding: 20px;
-      text-align: center;
-      position: sticky;
+      position: fixed;
       bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
       box-shadow: 0 -10px 30px rgba(0,0,0,0.8);
-      animation: fadeUp 0.8s ease;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      z-index: 999;
     }
 
     .total-box h2 {
-      margin: 0 0 10px;
+      margin: 0;
       font-family: 'Cinzel', serif;
       color: var(--gold);
+      font-size: 18px;
     }
 
-    button {
-      background: linear-gradient(135deg, #d4af37, #b8962e);
+    .total-box button {
+      background: linear-gradient(135deg, #25d366, #1ebe57);
       border: none;
-      padding: 12px 20px;
-      font-size: 16px;
+      color: #000;
+      padding: 12px 18px;
+      font-size: 15px;
       border-radius: 30px;
       cursor: pointer;
       font-weight: 600;
-      margin: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
     }
 
-    button:hover {
-      opacity: 0.9;
-    }
+    .total-box button:hover { opacity: 0.9; }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(6px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes fadeDown {
-      from { opacity: 0; transform: translateY(-10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @media (max-width: 600px) {
+    @media (max-width: 480px) {
       summary { font-size: 16px; }
-      .item { flex-direction: column; align-items: flex-start; gap: 6px; }
+      .item-name { font-size: 14px; }
+      .total-box h2 { font-size: 16px; }
+      .total-box button { font-size: 14px; padding: 10px 14px; }
     }
   </style>
 </head>
 <body>
 
 <header>
-  <img src="Logo_Brand_Name.png" alt="Cinematic Celebration Logo" />
+  <img src="Logo_Brand_Name.png" alt="Cinematic Celebration Logo">
   <h1>Food Menu</h1>
 </header>
 
 <div class="container">
 
   <details open>
-    <summary><i class="fa-solid fa-burger"></i> Burgers</summary>
-    <div class="item"><span class="item-name">Veg Cheese Burger</span><span class="price">₹135</span><input type="number" min="0" value="0"></div>
-    <div class="item"><span class="item-name">Chicken Crispy Burger</span><span class="price">₹150</span><input type="number" min="0" value="0"></div>
-  </details>
+    <summary><i class="fa-solid fa-burger"></i> Burger</summary>
 
-  <details>
-    <summary><i class="fa-solid fa-pizza-slice"></i> Pizza</summary>
-    <div class="item"><span class="item-name">Cheese Margherita</span><span class="price">₹130</span><input type="number" min="0" value="0"></div>
+    <div class="item" data-price="135">
+      <span class="item-name">Veg Cheese Burger</span>
+      <span class="price">₹135</span>
+      <div class="qty-control">
+        <button class="qty-btn" onclick="changeQty(this,-1)">−</button>
+        <span class="qty-value">0</span>
+        <button class="qty-btn" onclick="changeQty(this,1)">+</button>
+      </div>
+    </div>
+
+    <div class="item" data-price="150">
+      <span class="item-name">Chicken Crispy Burger</span>
+      <span class="price">₹150</span>
+      <div class="qty-control">
+        <button class="qty-btn" onclick="changeQty(this,-1)">−</button>
+        <span class="qty-value">0</span>
+        <button class="qty-btn" onclick="changeQty(this,1)">+</button>
+      </div>
+    </div>
   </details>
 
 </div>
 
-<div class="total-bar">
-  <span>Total: ₹<span id="totalAmount">0</span></span>
-  <button id="whatsappBtn">Send Order on WhatsApp</button>
+<!-- Sticky Total Bar -->
+<div class="total-box">
+  <h2>Total: ₹<span id="totalAmount">0</span></h2>
+  <button id="whatsappBtn"><i class="fa-brands fa-whatsapp"></i> Send Order</button>
 </div>
 
 <script>
-const items = document.querySelectorAll('.item');
-const totalEl = document.getElementById('totalAmount');
+  const items = document.querySelectorAll('.item');
+  const totalEl = document.getElementById('totalAmount');
 
-function updateTotal() {
-  let total = 0;
-  items.forEach(item => {
-    const price = parseInt(item.dataset.price);
-    const qty = parseInt(item.querySelector('.qty-value').innerText);
-    total += price * qty;
-  });
-  totalEl.textContent = total;
-}
+  function updateTotal() {
+    let total = 0;
+    items.forEach(item => {
+      const price = parseInt(item.dataset.price);
+      const qty = parseInt(item.querySelector('.qty-value').innerText);
+      total += price * qty;
+    });
+    totalEl.innerText = total;
+  }
 
-// auto bind buttons
-items.forEach(item => {
-  item.querySelectorAll('.qty-btn').forEach(btn => {
-    btn.addEventListener('click', () => updateTotal());
-  });
-}););
-  totalEl.innerText = total;
-}
+  function changeQty(btn, delta) {
+    const valEl = btn.parentElement.querySelector('.qty-value');
+    let qty = parseInt(valEl.innerText);
+    qty = Math.max(0, qty + delta);
+    valEl.innerText = qty;
+    updateTotal();
+  }
 
-function changeQty(btn, delta) {
-  const valEl = btn.parentElement.querySelector('.qty-value');
-  let qty = parseInt(valEl.innerText);
-  qty = Math.max(0, qty + delta);
-  valEl.innerText = qty;
-  updateTotal();
-}
+  document.getElementById('whatsappBtn').onclick = () => {
+    let msg = '🍽️ *Cinematic Celebration – Food Order*%0A%0A';
+    let hasItem = false;
 
-document.getElementById('whatsappBtn').onclick = () => {
-  let msg = 'Cinematic Celebration – Food Order%0A%0A';
-  items.forEach(item => {
-    const name = item.querySelector('.item-name').innerText;
-    const price = item.dataset.price;
-    const qty = item.querySelector('.qty-value').innerText;
-    if (qty > 0) msg += `${name} x ${qty} = ₹${price * qty}%0A`;
-  });
-  msg += `%0A_Total: ₹${totalEl.innerText}`;
-  // prevent duplicate send
-window.open(`https://wa.me/917349280445?text=${msg}`, '_blank');
-};
+    items.forEach(item => {
+      const name = item.querySelector('.item-name').innerText;
+      const price = parseInt(item.dataset.price);
+      const qty = parseInt(item.querySelector('.qty-value').innerText);
+      if (qty > 0) {
+        hasItem = true;
+        msg += `${name} × ${qty} = ₹${price * qty}%0A`;
+      }
+    });
+
+    if (!hasItem) {
+      alert('Please add at least one item');
+      return;
+    }
+
+    msg += `%0A*Total: ₹${totalEl.innerText}*`;
+    window.open(`https://wa.me/917349280445?text=${msg}`, '_blank');
+  };
 </script>
+
 </body>
 </html>
